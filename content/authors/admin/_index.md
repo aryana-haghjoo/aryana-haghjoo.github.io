@@ -106,7 +106,7 @@ social:
   # and uncomment the lines below.
   - icon: cv
     icon_pack: ai
-    link: uploads/resume.pdf
+    link: https://github.com/aryana-haghjoo/CV_Aryana_Haghjoo_detailed/blob/main/CV_Aryana_Haghjoo_detailed.pdf
 
 # Highlight the author in author lists? (true/false)
 highlight_name: true
