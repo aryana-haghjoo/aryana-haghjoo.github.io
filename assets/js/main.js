@@ -72,15 +72,15 @@
 
   /* ---- Mobile nav toggle ---- */
   var navToggle = document.getElementById('navToggle');
-  var navRight = document.querySelector('.nav-right');
-  if (navToggle && navRight) {
+  var navLinks = document.getElementById('navLinks');
+  if (navToggle && navLinks) {
     navToggle.addEventListener('click', function () {
-      var isOpen = navRight.classList.toggle('is-open');
+      var isOpen = navLinks.classList.toggle('is-open');
       navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     });
-    navRight.querySelectorAll('a').forEach(function (link) {
+    navLinks.querySelectorAll('a').forEach(function (link) {
       link.addEventListener('click', function () {
-        navRight.classList.remove('is-open');
+        navLinks.classList.remove('is-open');
         navToggle.setAttribute('aria-expanded', 'false');
       });
     });
