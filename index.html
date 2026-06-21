@@ -39,6 +39,7 @@
   <ul class="nav-links" id="navLinks">
     <li><a href="#about">About</a></li>
     <li><a href="#research">Research</a></li>
+    <li><a href="#talks">Talks</a></li>
     <li><a href="#photography">Photography</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -56,7 +57,7 @@
       </span>
       Aryana Haghjoo
     </h1>
-    <p class="hero-tagline">I study the universe at radio and infrared wavelengths — and the California coastline through an instant-film viewfinder.</p>
+    <p class="hero-tagline">I study the universe at radio and infrared wavelengths — and find any excuse to drive somewhere new with a camera in the passenger seat.</p>
     <div class="hero-actions">
       <a href="#research" class="btn btn-primary">See the research</a>
       <a href="#photography" class="btn btn-ghost">See the photos</a>
@@ -81,7 +82,7 @@
       <div class="about-copy">
         <p>I'm an astrophysicist working at the intersection of cosmology and machine learning. I hold an M.Sc. in Physics from McGill University, where I modeled the global 21cm signal to search for hints of non-standard physics in the early universe. I'm now a Ph.D. candidate in Astronomy at UC Riverside, where I build deep learning models that sharpen low-resolution galaxy spectra into something instruments alone couldn't capture.</p>
         <p>Before any of that, I was an undergraduate at Sharif University of Technology in Tehran, classifying variable stars with machine learning and falling in love with the idea that data, patiently modeled, can tell you the shape of things too far away to touch.</p>
-        <p>Outside of research, I'm usually driving up the coast somewhere with an Instax camera, learning to see the world a frame at a time instead of a pixel at a time.</p>
+        <p>Outside of research, I'm usually planning the next road trip — national parks, long drives, anywhere I haven't pulled over before. I started taking pictures with a Fujifilm Instax Mini 12 and have since graduated to a Kodak AstroZoom, but the habit's the same: stop the car, look properly, take the shot.</p>
         <a href="files/CV_Aryana_Haghjoo.pdf" class="cv-link" target="_blank" rel="noopener">
           <span>Download full CV</span>
           <svg viewBox="0 0 16 16" width="14" height="14"><path d="M8 1v9.5M4 7l4 4 4-4M2 14h12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -127,8 +128,11 @@
           <span class="research-tag">Deep Learning &middot; Spectroscopy</span>
           <span class="research-date">Dec 2024 — Present</span>
         </div>
-        <h3>Super-resolving low-resolution galaxy spectra</h3>
-        <p>A generative model that enhances the spectral resolution of JADES PRISM data by a factor of 10, trained with a physics-informed loss function tuned to emission-line accuracy and flux ratios like H&alpha;/H&beta;. The approach points toward higher-fidelity spectroscopy for future missions, including the Nancy Grace Roman Space Telescope, and is being extended into a multi-modal framework that fuses photometric and spectroscopic data.</p>
+        <h3>Super-resolving low-resolution galaxy spectra (SR2)</h3>
+        <p>Low-resolution spectra from JWST/NIRSpec's prism (R&sim;30&ndash;300) blend together key rest-frame optical lines &mdash; H&alpha;, H&beta;, [OIII]&lambda;5007, [OII]&lambda;3727 &mdash; past the point where dust attenuation, metallicity, and ionization state can be read off directly. Grating follow-up resolves them, but it's expensive and only available for a fraction of targets. I built a three-stage transformer pipeline (which I call SR2) that takes a low-resolution prism spectrum and reconstructs it at roughly 10&times; higher resolving power (R&sim;100 &rarr; R&sim;1000), trained on 1,187 paired prism/grating observations from the JADES program.</p>
+        <p>The pipeline first performs a coarse convolutional super-resolution pass, then infers a redshift from that intermediate reconstruction, then applies a physics-informed residual correction that uses self-attention across emission-line tokens to learn how lines relate to one another, alongside a convolutional branch that handles the continuum. On held-out test spectra it reaches noise-limited residuals across most of the spectral range and successfully deblends features &mdash; like the [OIII]&lambda;&lambda;4959,5007 doublet &mdash; that are completely unresolved at prism resolution, with meaningful signal-to-noise improvements on all four diagnostic lines.</p>
+        <p>I've since stress-tested SR2 against seven classical deconvolution methods (Wiener, Tikhonov, total-variation, Richardson&ndash;Lucy, wavelet-sparse, and a redshift-informed matched filter) on the same 1,187-spectrum set, to find out exactly where the deep-learning advantage is real versus where it's an illusion of denoising. SR2 wins decisively on global fidelity (30% lower error than the best classical method) and on line-width recovery (the smallest FWHM bias of any method, on every line) &mdash; genuine super-resolution, not just noise suppression. But the comparison also surfaced a real limitation: SR2 is the <em>worst</em> method of the eight for preserving flux ratios like the Balmer decrement and [OIII]/H&beta;, because it denoises H&alpha; more aggressively than the fainter lines. That matters, because those ratios are exactly what astronomers use to measure dust attenuation and ionization state. The practical takeaway is that SR2 is the right tool for detecting and characterizing line shapes, but flux-ratio science still needs either classical reconstructions or a calibration step on top of the network's output. I'm currently extending the architecture to fix this, and separately toward a multi-modal framework that fuses photometric and spectroscopic data for cross-modal inference.</p>
+        <p>The next direction is moving SR2 beyond JWST entirely: we're working on transferring what the model learned on NIRSpec prism/grating pairs to the Nancy Grace Roman Space Telescope and Euclid, two upcoming wide-field missions that will produce enormous volumes of low-resolution slitless spectroscopy with little to no high-resolution follow-up to train against. The open question is how much of SR2's physics-informed prior &mdash; the emission-line relationships it learned from JWST &mdash; carries over to a different instrument, a different wavelength coverage, and a different survey strategy, and how to adapt the model where it doesn't.</p>
         <p class="research-advisor">Advised by Bahram Mobasher &amp; Shoubaneh Hemmati — UC Riverside</p>
       </article>
 
@@ -147,8 +151,9 @@
           <span class="research-tag">21cm Cosmology &middot; M.Sc. Thesis</span>
           <span class="research-date">Sept 2021 — Dec 2023</span>
         </div>
-        <h3>Non-standard physics in the global 21cm signal</h3>
-        <p>Built an MCMC and Levenberg–Marquardt pipeline to estimate astrophysical parameters of the global 21cm signal, using ARES simulations and validating against data from EDGES — in search of departures from standard physics in the early universe.</p>
+        <h3>Parameter estimation of the global 21cm signal</h3>
+        <p>The global 21cm signal is one of the few direct observational windows into the period between the end of the cosmic dark ages and the formation of the first stars and galaxies &mdash; it's sensitive to the density and temperature of neutral hydrogen at that time, which means any deviation from what the standard cosmological model predicts could be a sign of new physics: cosmic strings, exotic particle interactions, unconventional dark matter candidates.</p>
+        <p>My thesis built a parameter estimation pipeline combining Markov Chain Monte Carlo with the Levenberg&ndash;Marquardt algorithm to recover the best-fit astrophysical parameters of the 21cm curve from theoretical models generated with Accelerated Reionization Era Simulations (ARES), then validated the approach against real data from the EDGES experiment. The literature review underpinning it covers the physical mechanisms that shape the signal, how non-standard physics would imprint on it, and the practical difficulties &mdash; foreground removal especially &mdash; that make this signal so hard to observe in the first place. The resulting best-fit parameters are meant to help constrain future theoretical models and set realistic precision targets for the next generation of experiments hunting for these non-standard effects.</p>
         <p class="research-advisor">Advised by Jonathan Sievers &amp; Oscar Hernandez — McGill University</p>
       </article>
 
@@ -170,12 +175,114 @@
     </div>
   </section>
 
+  <!-- TALKS -->
+  <section class="section talks-section" id="talks">
+    <div class="section-head">
+      <p class="section-label">03 — Talks</p>
+      <h2>Presentations</h2>
+    </div>
+
+    <div class="talks-list">
+      <div class="talk-row">
+        <span class="talk-date">Jun 2026</span>
+        <div class="talk-body">
+          <p class="talk-title">Deep Learning for Astronomical Data Enhancement</p>
+          <p class="talk-venue">Poster &middot; 248th AAS Meeting — Pasadena, CA</p>
+        </div>
+      </div>
+      <div class="talk-row">
+        <span class="talk-date">Jun 2026</span>
+        <div class="talk-body">
+          <p class="talk-title">Learning to See Sharper: A Physics-Informed AI Framework for Spectral Super-Resolution</p>
+          <p class="talk-venue">Poster &middot; 2026 Conference on Physics and AI (PAI26) — Stanford University</p>
+        </div>
+      </div>
+      <div class="talk-row">
+        <span class="talk-date">Apr 2026</span>
+        <div class="talk-body">
+          <p class="talk-title">Learning to See Sharper: A Physics-Informed AI Framework for Spectral Super-Resolution</p>
+          <p class="talk-venue">Invited talk &middot; AstroAI Lunch Talks — CfA, Harvard &amp; Smithsonian</p>
+        </div>
+      </div>
+      <div class="talk-row">
+        <span class="talk-date">Mar 2026</span>
+        <div class="talk-body">
+          <p class="talk-title">Learning to See Sharper: A Physics-Informed AI Framework for Spectral Super-Resolution</p>
+          <p class="talk-venue">Invited talk &middot; Euclid US Tag-Up Meeting — Euclid Consortium</p>
+        </div>
+      </div>
+      <div class="talk-row">
+        <span class="talk-date">Jan 2026</span>
+        <div class="talk-body">
+          <p class="talk-title">Super-Resolving Low-Resolution Galaxy Spectra</p>
+          <p class="talk-venue">Poster &middot; Arizona Winter School on Cosmology in the Roman ST Era — University of Arizona</p>
+        </div>
+      </div>
+      <div class="talk-row">
+        <span class="talk-date">Oct 2025</span>
+        <div class="talk-body">
+          <p class="talk-title">Super-Resolving Low-Resolution Galaxy Spectra</p>
+          <p class="talk-venue">Talk &middot; IR Spectroscopy from Space — IPAC, Caltech</p>
+        </div>
+      </div>
+      <div class="talk-row">
+        <span class="talk-date">Aug 2025</span>
+        <div class="talk-body">
+          <p class="talk-title">Super-Resolving Low-Resolution Galaxy Spectra</p>
+          <p class="talk-venue">Talk &middot; Greater IPAC Science Symposium — IPAC, Caltech</p>
+        </div>
+      </div>
+      <div class="talk-row">
+        <span class="talk-date">Jul 2025</span>
+        <div class="talk-body">
+          <p class="talk-title">Super-Resolving Low-Resolution Galaxy Spectra</p>
+          <p class="talk-venue">Poster &middot; Cosmic Cartography with Roman — Space Telescope Science Institute</p>
+        </div>
+      </div>
+      <div class="talk-row">
+        <span class="talk-date">Jul 2025</span>
+        <div class="talk-body">
+          <p class="talk-title">Super-Resolving Low-Resolution Galaxy Spectra</p>
+          <p class="talk-venue">Talk &middot; AstroAI Workshop — CfA, Harvard &amp; Smithsonian</p>
+        </div>
+      </div>
+      <div class="talk-row">
+        <span class="talk-date">Jun 2023</span>
+        <div class="talk-body">
+          <p class="talk-title">Unraveling Non-Standard Physics Through the Global 21cm Signal</p>
+          <p class="talk-venue">Talk &middot; SUT Cosmology Seminar — Sharif University of Technology</p>
+        </div>
+      </div>
+      <div class="talk-row">
+        <span class="talk-date">Mar 2023</span>
+        <div class="talk-body">
+          <p class="talk-title">Parameter Estimation of the Global 21cm Signal</p>
+          <p class="talk-venue">Poster &middot; Cosmology on Safari 2023 — Hluhluwe, South Africa</p>
+        </div>
+      </div>
+      <div class="talk-row">
+        <span class="talk-date">Oct 2022</span>
+        <div class="talk-body">
+          <p class="talk-title">Clarifying the Effects of Non-Standard Physics on the Global 21cm Signal</p>
+          <p class="talk-venue">Talk &middot; McGill Radio Lab Meetings — McGill University</p>
+        </div>
+      </div>
+      <div class="talk-row">
+        <span class="talk-date">May 2022</span>
+        <div class="talk-body">
+          <p class="talk-title">Effects of Non-Standard Physics on 21cm Signal</p>
+          <p class="talk-venue">Talk &middot; McGill Early Universe Cosmology Meetings — McGill University</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- PHOTOGRAPHY -->
   <section class="section photography-section" id="photography">
     <div class="section-head">
-      <p class="section-label">03 — Photography</p>
+      <p class="section-label">04 — Photography</p>
       <h2>What I see<br>when I'm not looking at spectra.</h2>
-      <p class="section-intro">A hobby that started with an Instax and a curiosity about the world at human scale. Mostly California coastline and the occasional campus detour.</p>
+      <p class="section-intro">It started with a Fujifilm Instax Mini 12 and turned into a Kodak AstroZoom habit. I like driving, road trips, national parks, and any excuse to pull over for a view &mdash; this is a running log of where that's taken me, mostly around California so far.</p>
     </div>
 
     <div class="photo-grid">
@@ -203,13 +310,63 @@
         <img src="assets/img/photography/highway1-fogline.jpg" alt="Marine fog layer spilling over coastal hills along Highway 1" loading="lazy">
         <figcaption><span class="photo-loc">Highway 1, California</span></figcaption>
       </figure>
+
+      <figure class="photo-card">
+        <img src="assets/img/photography/death-valley.jpg" alt="Badlands and mountain ridgeline at Zabriskie Point, Death Valley National Park" loading="lazy">
+        <figcaption><span class="photo-loc">Death Valley National Park</span></figcaption>
+      </figure>
+
+      <figure class="photo-card">
+        <img src="assets/img/photography/pinnacles-1.jpg" alt="Rock spires and restroom building at Pinnacles National Park" loading="lazy">
+        <figcaption><span class="photo-loc">Pinnacles National Park</span></figcaption>
+      </figure>
+
+      <figure class="photo-card photo-card--wide">
+        <img src="assets/img/photography/lake-mead.jpg" alt="Marina and desert shoreline at Lake Mead National Recreation Area" loading="lazy">
+        <figcaption><span class="photo-loc">Lake Mead National Recreation Area</span></figcaption>
+      </figure>
+
+      <figure class="photo-card">
+        <img src="assets/img/photography/hoover-dam-bridge.jpg" alt="Mike O'Callaghan-Pat Tillman Memorial Bridge spanning the Black Canyon near Hoover Dam" loading="lazy">
+        <figcaption><span class="photo-loc">Hoover Dam, Nevada/Arizona</span></figcaption>
+      </figure>
+
+      <figure class="photo-card">
+        <img src="assets/img/photography/pinnacles-2.jpg" alt="Wildflowers along a trail at Pinnacles National Park" loading="lazy">
+        <figcaption><span class="photo-loc">Pinnacles National Park</span></figcaption>
+      </figure>
+
+      <figure class="photo-card photo-card--wide">
+        <img src="assets/img/photography/sausalito.jpg" alt="Hillside houses overlooking the water in Sausalito under fog" loading="lazy">
+        <figcaption><span class="photo-loc">Sausalito, California</span></figcaption>
+      </figure>
+
+      <figure class="photo-card">
+        <img src="assets/img/photography/baylands-preserve.jpg" alt="Canada geese in a wetland pond at Baylands Nature Preserve" loading="lazy">
+        <figcaption><span class="photo-loc">Baylands Nature Preserve</span></figcaption>
+      </figure>
+
+      <figure class="photo-card">
+        <img src="assets/img/photography/ucr-campus.jpg" alt="View of campus buildings and hills from a terrace at UC Riverside" loading="lazy">
+        <figcaption><span class="photo-loc">UC Riverside</span></figcaption>
+      </figure>
+
+      <figure class="photo-card">
+        <img src="assets/img/photography/whitewater-preserve.jpg" alt="Shaded trail through trees at Whitewater Preserve" loading="lazy">
+        <figcaption><span class="photo-loc">Whitewater Preserve</span></figcaption>
+      </figure>
+
+      <figure class="photo-card photo-card--wide">
+        <img src="assets/img/photography/car-view-travel.jpg" alt="National park map and Instax camera on the car seat during a road trip" loading="lazy">
+        <figcaption><span class="photo-loc">Somewhere on a road trip</span></figcaption>
+      </figure>
     </div>
   </section>
 
   <!-- CONTACT -->
   <section class="section contact-section" id="contact">
     <div class="section-head">
-      <p class="section-label">04 — Contact</p>
+      <p class="section-label">05 — Contact</p>
       <h2>Get in touch</h2>
     </div>
 
