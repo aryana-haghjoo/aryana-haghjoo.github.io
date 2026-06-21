@@ -511,6 +511,24 @@ ul { list-style: none; }
   font-style: italic;
   margin-bottom: 0 !important;
 }
+.research-figure {
+  margin: 1.5rem 0;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.25);
+}
+.research-figure img {
+  width: 100%;
+  display: block;
+}
+.research-figure figcaption {
+  padding: 0.75rem 1rem;
+  font-size: 0.82rem;
+  color: var(--grey);
+  line-height: 1.5;
+  border-top: 1px solid var(--line);
+}
 .research-links {
   display: flex;
   gap: 1rem;
