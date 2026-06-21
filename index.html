@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aryana Haghjoo — Astrophysicist</title>
+<meta name="description" content="Aryana Haghjoo, Ph.D. student in Astronomy at UC Riverside. Research in computational cosmology, deep learning, and galaxy spectroscopy. Photography on the side.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+
+<!-- Custom galaxy cursor -->
+<div class="galaxy-cursor" id="galaxyCursor" aria-hidden="true">
+  <svg viewBox="0 0 40 40" width="40" height="40">
+    <ellipse class="gc-arm" cx="20" cy="20" rx="17" ry="6" />
+    <ellipse class="gc-arm gc-arm-2" cx="20" cy="20" rx="11" ry="17" />
+    <circle class="gc-core" cx="20" cy="20" r="3.2" />
+  </svg>
+</div>
+
+<!-- Fixed starfield + deep field backdrop -->
+<div class="cosmic-backdrop" aria-hidden="true">
+  <div class="deepfield-layer"></div>
+  <div class="vignette-layer"></div>
+  <div class="stars-layer" id="starsLayer"></div>
+</div>
+
+<!-- Nav -->
+<nav class="site-nav" id="siteNav">
+  <a href="#top" class="nav-mark">AH</a>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#photography">Photography</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Ph.D. Candidate in Astronomy &middot; University of California, Riverside</p>
+    <h1 class="hero-name">
+      <span class="spectrum-line" aria-hidden="true">
+        <svg viewBox="0 0 600 60" preserveAspectRatio="none">
+          <path d="M0,30 L180,30 C195,30 200,4 215,4 C230,4 235,30 250,30 L600,30" />
+        </svg>
+      </span>
+      Aryana Haghjoo
+    </h1>
+    <p class="hero-tagline">I study the universe at radio and infrared wavelengths — and the California coastline through an instant-film viewfinder.</p>
+    <div class="hero-actions">
+      <a href="#research" class="btn btn-primary">See the research</a>
+      <a href="#photography" class="btn btn-ghost">See the photos</a>
+    </div>
+  </div>
+  <div class="hero-scroll-cue" aria-hidden="true"><span></span></div>
+</header>
+
+<main>
+
+  <!-- ABOUT -->
+  <section class="section about-section" id="about">
+    <div class="section-head">
+      <p class="section-label">01 — About</p>
+      <h2>From the 21cm signal<br>to galaxy spectra.</h2>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-portrait">
+        <img src="assets/img/profile/headshot.jpg" alt="Portrait of Aryana Haghjoo" loading="lazy">
+      </div>
+      <div class="about-copy">
+        <p>I'm an astrophysicist working at the intersection of cosmology and machine learning. I hold an M.Sc. in Physics from McGill University, where I modeled the global 21cm signal to search for hints of non-standard physics in the early universe. I'm now a Ph.D. candidate in Astronomy at UC Riverside, where I build deep learning models that sharpen low-resolution galaxy spectra into something instruments alone couldn't capture.</p>
+        <p>Before any of that, I was an undergraduate at Sharif University of Technology in Tehran, classifying variable stars with machine learning and falling in love with the idea that data, patiently modeled, can tell you the shape of things too far away to touch.</p>
+        <p>Outside of research, I'm usually driving up the coast somewhere with an Instax camera, learning to see the world a frame at a time instead of a pixel at a time.</p>
+        <a href="files/CV_Aryana_Haghjoo.pdf" class="cv-link" target="_blank" rel="noopener">
+          <span>Download full CV</span>
+          <svg viewBox="0 0 16 16" width="14" height="14"><path d="M8 1v9.5M4 7l4 4 4-4M2 14h12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="education-timeline">
+      <div class="edu-row">
+        <span class="edu-date">2025 – 2030 (expected)</span>
+        <span class="edu-degree">Ph.D., Astronomy</span>
+        <span class="edu-school">University of California, Riverside</span>
+      </div>
+      <div class="edu-row">
+        <span class="edu-date">2024 – 2025</span>
+        <span class="edu-degree">M.Sc., Astronomy</span>
+        <span class="edu-school">University of California, Riverside</span>
+      </div>
+      <div class="edu-row">
+        <span class="edu-date">2021 – 2023</span>
+        <span class="edu-degree">M.Sc., Physics</span>
+        <span class="edu-school">McGill University</span>
+      </div>
+      <div class="edu-row">
+        <span class="edu-date">2018 – 2021</span>
+        <span class="edu-degree">B.Sc., Physics</span>
+        <span class="edu-school">Sharif University of Technology</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEARCH -->
+  <section class="section research-section" id="research">
+    <div class="section-head">
+      <p class="section-label">02 — Research</p>
+      <h2>Selected work</h2>
+    </div>
+
+    <div class="research-list">
+
+      <article class="research-card">
+        <div class="research-meta">
+          <span class="research-tag">Deep Learning &middot; Spectroscopy</span>
+          <span class="research-date">Dec 2024 — Present</span>
+        </div>
+        <h3>Super-resolving low-resolution galaxy spectra</h3>
+        <p>A generative model that enhances the spectral resolution of JADES PRISM data by a factor of 10, trained with a physics-informed loss function tuned to emission-line accuracy and flux ratios like H&alpha;/H&beta;. The approach points toward higher-fidelity spectroscopy for future missions, including the Nancy Grace Roman Space Telescope, and is being extended into a multi-modal framework that fuses photometric and spectroscopic data.</p>
+        <p class="research-advisor">Advised by Bahram Mobasher &amp; Shoubaneh Hemmati — UC Riverside</p>
+      </article>
+
+      <article class="research-card">
+        <div class="research-meta">
+          <span class="research-tag">Survey Science</span>
+          <span class="research-date">Dec 2024 — Present</span>
+        </div>
+        <h3>H2O mission catalog</h3>
+        <p>Inspecting 2D spectral data from the Keck Observatory to extract spectroscopically confirmed sources, contributing redshifts and emission-line measurements to the H2O catalog.</p>
+        <p class="research-advisor">Advised by Bahram Mobasher — UC Riverside</p>
+      </article>
+
+      <article class="research-card">
+        <div class="research-meta">
+          <span class="research-tag">21cm Cosmology &middot; M.Sc. Thesis</span>
+          <span class="research-date">Sept 2021 — Dec 2023</span>
+        </div>
+        <h3>Non-standard physics in the global 21cm signal</h3>
+        <p>Built an MCMC and Levenberg–Marquardt pipeline to estimate astrophysical parameters of the global 21cm signal, using ARES simulations and validating against data from EDGES — in search of departures from standard physics in the early universe.</p>
+        <p class="research-advisor">Advised by Jonathan Sievers &amp; Oscar Hernandez — McGill University</p>
+      </article>
+
+      <article class="research-card">
+        <div class="research-meta">
+          <span class="research-tag">Machine Learning &middot; Undergraduate</span>
+          <span class="research-date">Jan 2020 — Sept 2020</span>
+        </div>
+        <h3>Classifying variable stars with machine learning</h3>
+        <p>Applied KNN, random forest, and CNN models to classify variable stars in the OGLE dataset, working through the challenges of significant class imbalance.</p>
+        <p class="research-advisor">Advised by Sadegh Raeisi &amp; Sohrab Rahvar — Sharif University of Technology</p>
+      </article>
+
+    </div>
+
+    <div class="research-links">
+      <a href="https://ui.adsabs.harvard.edu/search/q=aryana%20haghjoo&sort=date%20desc" target="_blank" rel="noopener" class="btn btn-ghost">ADS publication record</a>
+      <a href="https://scholar.google.com/citations?user=1e0tM_cAAAAJ&hl=en" target="_blank" rel="noopener" class="btn btn-ghost">Google Scholar</a>
+    </div>
+  </section>
+
+  <!-- PHOTOGRAPHY -->
+  <section class="section photography-section" id="photography">
+    <div class="section-head">
+      <p class="section-label">03 — Photography</p>
+      <h2>What I see<br>when I'm not looking at spectra.</h2>
+      <p class="section-intro">A hobby that started with an Instax and a curiosity about the world at human scale. Mostly California coastline and the occasional campus detour.</p>
+    </div>
+
+    <div class="photo-grid">
+      <figure class="photo-card photo-card--wide">
+        <img src="assets/img/photography/highway1-bridge.jpg" alt="Bixby-style coastal bridge along Highway 1, California" loading="lazy">
+        <figcaption><span class="photo-loc">Highway 1, California</span></figcaption>
+      </figure>
+
+      <figure class="photo-card">
+        <img src="assets/img/photography/highway1-coastline.jpg" alt="Fog rolling over the cliffs along the Big Sur coastline" loading="lazy">
+        <figcaption><span class="photo-loc">Highway 1, California</span></figcaption>
+      </figure>
+
+      <figure class="photo-card">
+        <img src="assets/img/photography/stanford-arcade.jpg" alt="Sandstone arcade with arches at Stanford University" loading="lazy">
+        <figcaption><span class="photo-loc">Stanford University</span></figcaption>
+      </figure>
+
+      <figure class="photo-card">
+        <img src="assets/img/photography/highway1-roadside.jpg" alt="Roadside pullout overlooking Highway 1 with coastal wildflowers" loading="lazy">
+        <figcaption><span class="photo-loc">Highway 1, California</span></figcaption>
+      </figure>
+
+      <figure class="photo-card photo-card--wide">
+        <img src="assets/img/photography/highway1-fogline.jpg" alt="Marine fog layer spilling over coastal hills along Highway 1" loading="lazy">
+        <figcaption><span class="photo-loc">Highway 1, California</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section contact-section" id="contact">
+    <div class="section-head">
+      <p class="section-label">04 — Contact</p>
+      <h2>Get in touch</h2>
+    </div>
+
+    <div class="contact-grid">
+      <a class="contact-card" href="mailto:aryana.haghjoo@email.ucr.edu">
+        <span class="contact-label">Email</span>
+        <span class="contact-value">aryana.haghjoo@email.ucr.edu</span>
+      </a>
+      <a class="contact-card" href="https://www.linkedin.com/in/aryana-haghjoo/" target="_blank" rel="noopener">
+        <span class="contact-label">LinkedIn</span>
+        <span class="contact-value">in/aryana-haghjoo</span>
+      </a>
+      <a class="contact-card" href="https://github.com/aryana-haghjoo" target="_blank" rel="noopener">
+        <span class="contact-label">GitHub</span>
+        <span class="contact-value">aryana-haghjoo</span>
+      </a>
+      <a class="contact-card" href="https://scholar.google.com/citations?user=1e0tM_cAAAAJ&hl=en" target="_blank" rel="noopener">
+        <span class="contact-label">Google Scholar</span>
+        <span class="contact-value">View publications</span>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <p>Designed &amp; built with a deep field from the Vera C. Rubin Observatory (NOIRLab/NSF/AURA) in the background.</p>
+  <p>&copy; 2026 Aryana Haghjoo</p>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
