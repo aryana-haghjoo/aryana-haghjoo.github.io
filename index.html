@@ -255,6 +255,89 @@
       <article class="package-card">
         <div class="package-heading">
           <div>
+            <p class="package-type">Python &middot; JWST/NIRSpec &middot; Machine Learning</p>
+            <h3>specsr</h3>
+          </div>
+          <span class="package-status">Public release</span>
+        </div>
+        <div class="package-badges" aria-label="specsr package information">
+          <a href="https://github.com/aryana-haghjoo/specsr" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/GitHub-Repository-181717?logo=github" alt="specsr repository on GitHub"></a>
+          <a href="https://pypi.org/project/specsr/" target="_blank" rel="noopener"><img src="https://img.shields.io/pypi/v/specsr" alt="specsr version on PyPI"></a>
+          <a href="https://pypi.org/project/specsr/" target="_blank" rel="noopener"><img src="https://img.shields.io/pypi/pyversions/specsr" alt="Supported Python versions"></a>
+          <a href="https://github.com/aryana-haghjoo/specsr/blob/main/LICENSE" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="MIT License"></a>
+          <a href="https://github.com/aryana-haghjoo/specsr/actions/workflows/ci.yml" target="_blank" rel="noopener"><img src="https://github.com/aryana-haghjoo/specsr/actions/workflows/ci.yml/badge.svg" alt="CI status"></a>
+          <a href="https://aryana-haghjoo.github.io/specsr/" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/docs-latest-brightgreen" alt="Documentation"></a>
+          <a href="https://huggingface.co/aryana-haghjoo/specsr" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Model-Hugging%20Face-orange" alt="Model on Hugging Face"></a>
+          <a href="https://doi.org/10.5281/zenodo.21943196" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/DOI-10.5281%2Fzenodo.21943196-blue" alt="Zenodo DOI"></a>
+          <a href="https://arxiv.org/abs/2603.18357" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/arXiv-2603.18357-b31b1b" alt="Paper on arXiv"></a>
+        </div>
+        <p><strong>specsr</strong> is an open-source Python package that super-resolves JWST/NIRSpec prism spectra, raising their resolving power by roughly a factor of ten (R&nbsp;~&nbsp;100 &rarr; R&nbsp;~&nbsp;1000). Trained on paired prism and grating observations from JADES, its three-stage pipeline recovers emission-line structure that is blended at prism resolution, such as the [OIII]&lambda;&lambda;4959,5007 doublet, and returns a redshift and a wavelength-dependent uncertainty with every super-resolved spectrum. Pretrained weights download from Hugging Face on first use, and the tutorial notebooks run on bundled JADES spectra with no survey data required. This is the software release accompanying Haghjoo et al. (2026).</p>
+        <div class="package-links">
+          <a href="https://github.com/aryana-haghjoo/specsr" class="package-link" target="_blank" rel="noopener">
+            <span>Explore specsr on GitHub</span>
+            <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M3 13L13 3M6 3h7v7" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="package-card">
+        <div class="package-heading">
+          <div>
+            <p class="package-type">Python &middot; JWST/NIRSpec &middot; Benchmarking</p>
+            <h3>specsrbench</h3>
+          </div>
+          <span class="package-status">Public release</span>
+        </div>
+        <div class="package-badges" aria-label="specsrbench package information">
+          <a href="https://github.com/aryana-haghjoo/specsr-benchmark" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/GitHub-Repository-181717?logo=github" alt="specsrbench repository on GitHub"></a>
+          <a href="https://pypi.org/project/specsrbench/" target="_blank" rel="noopener"><img src="https://img.shields.io/pypi/v/specsrbench" alt="specsrbench version on PyPI"></a>
+          <a href="https://pypi.org/project/specsrbench/" target="_blank" rel="noopener"><img src="https://img.shields.io/pypi/pyversions/specsrbench" alt="Supported Python versions"></a>
+          <a href="https://github.com/aryana-haghjoo/specsr-benchmark/blob/main/LICENSE" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="MIT License"></a>
+          <a href="https://github.com/aryana-haghjoo/specsr-benchmark/actions/workflows/tests.yml" target="_blank" rel="noopener"><img src="https://github.com/aryana-haghjoo/specsr-benchmark/actions/workflows/tests.yml/badge.svg" alt="Test status"></a>
+          <a href="https://aryana-haghjoo.github.io/specsr-benchmark/" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/docs-latest-brightgreen" alt="Documentation"></a>
+          <a href="https://huggingface.co/datasets/aryana-haghjoo/specsr-benchmark" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Data-Hugging%20Face-orange" alt="Tutorial data on Hugging Face"></a>
+          <a href="https://doi.org/10.5281/zenodo.22104971" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/DOI-10.5281%2Fzenodo.22104971-blue" alt="Zenodo DOI"></a>
+        </div>
+        <p><strong>specsrbench</strong> benchmarks the specsr deep-learning pipeline against seven classical deconvolution methods, from cubic interpolation and Wiener filtering to Richardson&ndash;Lucy and wavelet-sparse reconstruction, on held-out JWST/NIRSpec prism spectra from JADES. It measures the instrument's line-spread function directly from the data and tunes the classical methods under four guards that stop the error metric from rewarding reconstructions that smooth away, shrink, broaden, or merge emission lines. The headline finding is that, at the pixel level on this data, no method beats cubic interpolation, and that the deep-learning lead in raw error comes from amplitude shrinkage rather than better reconstruction. A tutorial notebook reproduces the comparison on a small sample fetched from Hugging Face, with no survey data or GPU needed.</p>
+        <div class="package-links">
+          <a href="https://github.com/aryana-haghjoo/specsr-benchmark" class="package-link" target="_blank" rel="noopener">
+            <span>Explore specsrbench on GitHub</span>
+            <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M3 13L13 3M6 3h7v7" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="package-card">
+        <div class="package-heading">
+          <div>
+            <p class="package-type">Python &middot; Roman Space Telescope &middot; Machine Learning</p>
+            <h3>specsr-roman</h3>
+          </div>
+          <span class="package-status">Public release</span>
+        </div>
+        <div class="package-badges" aria-label="specsr-roman package information">
+          <a href="https://github.com/aryana-haghjoo/specsr-roman" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/GitHub-Repository-181717?logo=github" alt="specsr-roman repository on GitHub"></a>
+          <a href="https://pypi.org/project/specsr-roman/" target="_blank" rel="noopener"><img src="https://img.shields.io/pypi/v/specsr-roman" alt="specsr-roman version on PyPI"></a>
+          <a href="https://pypi.org/project/specsr-roman/" target="_blank" rel="noopener"><img src="https://img.shields.io/pypi/pyversions/specsr-roman" alt="Supported Python versions"></a>
+          <a href="https://github.com/aryana-haghjoo/specsr-roman/blob/main/LICENSE" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="MIT License"></a>
+          <a href="https://github.com/aryana-haghjoo/specsr-roman/actions/workflows/ci.yml" target="_blank" rel="noopener"><img src="https://github.com/aryana-haghjoo/specsr-roman/actions/workflows/ci.yml/badge.svg" alt="CI status"></a>
+          <a href="https://aryana-haghjoo.github.io/specsr-roman/" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/docs-latest-brightgreen" alt="Documentation"></a>
+          <a href="https://huggingface.co/aryana-haghjoo/roman-spectral-superresolution" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Model-Hugging%20Face-orange" alt="Model on Hugging Face"></a>
+          <a href="https://huggingface.co/datasets/aryana-haghjoo/romansr-data" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Data-Hugging%20Face-orange" alt="Training data on Hugging Face"></a>
+          <a href="https://doi.org/10.5281/zenodo.22119689" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/DOI-10.5281%2Fzenodo.22119689-blue" alt="Zenodo DOI"></a>
+        </div>
+        <p><strong>specsr-roman</strong> brings spectral super-resolution to slitless grism spectra from the Nancy Grace Roman Space Telescope, whose High Latitude Spectroscopic Survey will observe millions of emission-line galaxies at a resolving power where diagnostic lines such as H&alpha; and [NII] stay blended. Trained on simulated OpenUniverse2024 spectra, its three-stage pipeline combines the grism spectrum with three Roman imaging bands to infer a full redshift probability distribution, and it sharpens emission lines only where the data could actually have revealed them. It is built around one principle: a model that invents plausible emission lines is worse than useless in a survey. Pretrained weights, the training dataset, and a tutorial that runs in minutes on a CPU are all public.</p>
+        <div class="package-links">
+          <a href="https://github.com/aryana-haghjoo/specsr-roman" class="package-link" target="_blank" rel="noopener">
+            <span>Explore specsr-roman on GitHub</span>
+            <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M3 13L13 3M6 3h7v7" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="package-card">
+        <div class="package-heading">
+          <div>
             <img src="assets/img/software/foresttask-icon.png" alt="ForestTask app icon" style="width: 64px; height: 64px; margin-bottom: 0.75rem; border-radius: 12px;">
             <p class="package-type">Electron &middot; Task Management &middot; macOS</p>
             <h3>ForestTask</h3>
