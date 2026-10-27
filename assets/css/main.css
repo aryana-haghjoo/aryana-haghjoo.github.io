@@ -645,36 +645,83 @@ ul { list-style: none; }
 }
 
 /* ---------- Talks ---------- */
-.talks-list {
-  border-top: 1px solid var(--line);
-}
-.talk-row {
+.talk-videos {
   display: grid;
-  grid-template-columns: 110px 1fr;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 460px), 1fr));
   gap: 1.5rem;
-  padding: 1.15rem 0;
-  border-bottom: 1px solid var(--line);
-  align-items: baseline;
+}
+.talk-video {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--line);
+  background: var(--ink-raised);
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+.talk-video:hover { border-color: var(--rust); transform: translateY(-2px); }
+.talk-thumb {
+  position: relative;
+  display: block;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+}
+.talk-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.8);
+  transition: filter 0.2s ease;
+}
+.talk-video:hover .talk-thumb img { filter: brightness(1); }
+.talk-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 64px;
+  height: 64px;
+  margin: -32px 0 0 -32px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--rust);
+  color: var(--bone);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+.talk-play svg { margin-left: 3px; }
+.talk-video:hover .talk-play { transform: scale(1.08); background: var(--rust-bright); }
+.talk-video-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1.25rem 1.4rem 1.4rem;
 }
 .talk-date {
   font-family: var(--font-mono);
   font-size: 0.78rem;
   color: var(--rust-bright);
-  white-space: nowrap;
 }
 .talk-title {
   font-weight: 500;
-  font-size: 0.98rem;
-  margin-bottom: 0.25rem;
+  font-size: 1.02rem;
+  color: var(--bone);
 }
 .talk-venue {
   font-size: 0.86rem;
   color: var(--grey);
   font-style: italic;
 }
-@media (max-width: 600px) {
-  .talk-row { grid-template-columns: 1fr; gap: 0.3rem; }
+.talk-watch {
+  margin-top: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--rust-bright);
 }
+.talks-more {
+  margin-top: 2rem;
+  color: var(--bone-dim);
+  font-size: 0.95rem;
+}
+.talks-more a { color: var(--rust-bright); border-bottom: 1px solid var(--rust); }
 
 /* ---------- CV ---------- */
 .cv-embed {
