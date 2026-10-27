@@ -676,6 +676,24 @@ ul { list-style: none; }
   .talk-row { grid-template-columns: 1fr; gap: 0.3rem; }
 }
 
+/* ---------- CV ---------- */
+.cv-embed {
+  display: block;
+  width: 100%;
+  height: min(85vh, 1100px);
+  border: 1px solid var(--line);
+  background: var(--ink-raised);
+}
+.cv-fallback {
+  padding: 2rem;
+  color: var(--bone-dim);
+}
+.cv-fallback a { color: var(--rust-bright); border-bottom: 1px solid var(--rust); }
+.cv-section .cv-link { margin-top: 1.25rem; }
+@media (max-width: 600px) {
+  .cv-embed { height: 70vh; }
+}
+
 /* ---------- Photography ---------- */
 .photo-grid {
   display: grid;
