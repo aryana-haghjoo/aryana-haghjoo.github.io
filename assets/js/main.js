@@ -13,22 +13,28 @@
   if (cursor && !isTouch) {
     var mouseX = window.innerWidth / 2;
     var mouseY = window.innerHeight / 2;
-    var curX = mouseX;
-    var curY = mouseY;
+    var hovering = false;
+    var pending = false;
+
+    // follow the pointer directly; batch to one transform write per frame
+    function renderCursor() {
+      pending = false;
+      cursor.style.transform = 'translate(' + mouseX + 'px, ' + mouseY + 'px) translate(-50%, -50%)' +
+        (hovering ? ' scale(1.4)' : '');
+    }
+    function scheduleRender() {
+      if (!pending) {
+        pending = true;
+        requestAnimationFrame(renderCursor);
+      }
+    }
 
     window.addEventListener('mousemove', function (e) {
       mouseX = e.clientX;
       mouseY = e.clientY;
+      scheduleRender();
     });
-
-    function animateCursor() {
-      // gentle easing so the galaxy trails slightly behind the pointer
-      curX += (mouseX - curX) * 0.22;
-      curY += (mouseY - curY) * 0.22;
-      cursor.style.transform = 'translate(' + curX + 'px, ' + curY + 'px) translate(-50%, -50%)';
-      requestAnimationFrame(animateCursor);
-    }
-    requestAnimationFrame(animateCursor);
+    scheduleRender();
 
     document.addEventListener('mouseleave', function () {
       cursor.style.opacity = '0';
@@ -41,11 +47,14 @@
     var interactiveEls = document.querySelectorAll('a, button, .photo-card');
     interactiveEls.forEach(function (el) {
       el.addEventListener('mouseenter', function () {
-        cursor.style.transform += ' scale(1.4)';
+        hovering = true;
         cursor.classList.add('gc-hover');
+        scheduleRender();
       });
       el.addEventListener('mouseleave', function () {
+        hovering = false;
         cursor.classList.remove('gc-hover');
+        scheduleRender();
       });
     });
   }

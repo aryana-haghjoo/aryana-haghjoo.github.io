@@ -58,7 +58,6 @@ ul { list-style: none; }
   z-index: 9999;
   transform: translate(-50%, -50%);
   will-change: transform;
-  mix-blend-mode: screen;
 }
 .galaxy-cursor svg { width: 100%; height: 100%; }
 .gc-arm {
