@@ -722,6 +722,23 @@ ul { list-style: none; }
 }
 .talks-more a { color: var(--rust-bright); border-bottom: 1px solid var(--rust); }
 
+/* ---------- Teaching ---------- */
+.teach-group {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--grey);
+  margin: 2.5rem 0 0.9rem;
+}
+.teach-group:first-of-type { margin-top: 0; }
+.teach-timeline { margin-top: 0; }
+.teach-timeline .edu-row { grid-template-columns: 200px 1.7fr 1fr; }
+.teach-timeline .edu-degree { font-weight: 500; }
+@media (max-width: 720px) {
+  .teach-timeline .edu-row { grid-template-columns: 1fr; }
+}
+
 /* ---------- CV ---------- */
 .cv-embed {
   display: block;
