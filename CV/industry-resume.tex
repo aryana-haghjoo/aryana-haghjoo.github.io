@@ -1,0 +1,64 @@
+% One-page industry resume. Built from the same facts as kyvernitis-resume.tex;
+% keep the two consistent. Build: latexmk -xelatex -outdir=build industry-resume.tex
+% (output stays in build/, it is not published to the website).
+\documentclass[]{kyvernitis-resume}
+\fullname{Aryana Haghjoo}
+
+\setlist[itemize]{itemsep=1pt, parsep=0pt, topsep=2pt, leftmargin=1.5em}
+\begin{document}
+\resumeheader
+{\email{aryana.haghjoo@email.ucr.edu}}
+{\website{aryana-haghjoo.github.io}}
+{\linkedin{aryana-haghjoo}}
+{\github{aryana-haghjoo}}
+\medskip
+
+\textbf{Machine learning researcher} who builds physics-informed deep learning models and simulation tools for noisy, real-world sensor data. End to end: data pipelines, model design, GPU training, validation against classical baselines, and explaining results to technical and non-technical audiences. Ph.D.\ student at UC Riverside.
+
+\medskip
+%--------------------------------------------------
+\sectiontable{Skills}{
+    \entry{Machine Learning}{PyTorch, generative models, normalizing flows, neural surrogates, data fusion}
+    \entry{Statistics \& Simulation}{Monte Carlo, Bayesian and simulation-based inference, reliability modeling}
+    \entry{Engineering}{Python (NumPy, SciPy), C/C++, Bash, Git, pytest, W\&B, SLURM GPU clusters}
+    \entry{Coursework}{Machine Learning in Physics, Computational Physics, Modeling Statistical Phenomena, Complex Systems}
+    \entry{Languages}{English (full professional), Persian (native)}
+}
+%--------------------------------------------------
+\begin{section}{Experience}
+
+\begin{subsection}{Graduate Researcher, Deep Learning for Spectral Super-Resolution}{UC Riverside, in collaboration with Caltech/IPAC}{Dec 2024 -- Present}{Riverside, CA}
+    \item Built a physics-informed generative model in PyTorch that recovers \textbf{10$\times$ higher resolution} from low-resolution sensor data (JWST spectra), with a custom loss that keeps the physically important features accurate
+    \item Benchmarked the model against classical deconvolution to show when deep learning pays off and at what cost; \textbf{two first-author papers under review}
+    \item Extending it to a multi-modal foundation model that fuses data from different instruments; tested Python package, W\&B experiment tracking, multi-stage training on a GPU cluster
+\end{subsection}
+
+\begin{subsection}{G21Fit: Fast Bayesian Inference with Neural Surrogates}{Python package, built on my M.Sc.\ thesis pipeline}{Jul 2026}{Riverside, CA}
+    \item Trained a neural emulator to replace a slow physics simulator inside MCMC: \textbf{10$^3$--10$^5\times$ faster}, with $\leq$0.08$\sigma$ bias against the full-simulation posterior
+    \item Added neural posterior estimation with a conditional normalizing flow: inference in a single forward pass, another 100--1000$\times$ faster, with the accuracy cost measured and reported
+\end{subsection}
+
+\begin{subsection}{Graduate Researcher, Bayesian Parameter Estimation}{McGill University}{Sept 2021 -- Dec 2023}{Montreal, Canada}
+    \item Built an MCMC fitting pipeline around a physics simulator; validated it on real instrument data
+\end{subsection}
+
+\begin{subsectionnobullet}{Teaching Assistant, Applied Machine Learning and Data Science}{PHYS 243 and 247 at UCR; earlier TA roles at McGill and Sharif University}{2019 -- Present}{UC Riverside}
+\end{subsectionnobullet}
+\end{section}
+%--------------------------------------------------
+\begin{section}{Highlights}
+\begin{itemize}
+    \item \textbf{USC AI4SE Hackathon:} Most Advanced Technology award (2026)
+    \item \textbf{UCR Graduate Off-Campus (GO!) Fellowship} for Summer 2027
+    \item \textbf{Certificates:} Code/Astro Software Development (UCSC); Corporate Diplomacy Global Leaders (Meridian)
+    \item \textbf{14 publications} (106 citations), incl.\ \textit{Nature Astronomy}; 15+ talks, incl.\ invited at Harvard CfA
+\end{itemize}
+\end{section}
+%--------------------------------------------------
+\sectiontable{Education}{
+    \entry{Ph.D.\ Astronomy (expected), UC Riverside (GPA 3.8/4; M.Sc.\ en route, 2026)}{\hfill \textit{2028}}
+    \entry{M.Sc.\ Physics, McGill University (thesis: Bayesian parameter estimation)}{\hfill \textit{2023}}
+    \entry{B.Sc.\ Physics, Sharif University of Technology (top 0.5\% of 180K in national entrance exam)}{\hfill \textit{2021}}
+}
+%--------------------------------------------------
+\end{document}
