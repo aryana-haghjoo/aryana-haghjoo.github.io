@@ -167,17 +167,17 @@
         <h3>Super-resolving galaxy spectra, from JWST to Roman</h3>
         <p>Low-resolution spectra blend the emission lines used to measure dust, metallicity, and ionization, and high-resolution follow-up is expensive. I built a physics-informed deep-learning pipeline that sharpens JWST/NIRSpec prism spectra by roughly a factor of ten in resolving power. Trained on 2,858 paired prism and grating spectra from JADES, it infers a redshift and then refines emission lines with attention across line tokens, separating features such as the [OIII]&lambda;&lambda;4959,5007 doublet that the prism cannot resolve.</p>
         <figure class="research-figure">
-          <img src="assets/img/research/generated_spectra.png" alt="Two held-out JWST galaxy spectra comparing the low-resolution prism input, the high-resolution grating target, and the super-resolved output from 1 to 5.3 microns" loading="lazy">
+          <img src="assets/img/research/generated_spectra.png" width="2400" height="1438" alt="Two held-out JWST galaxy spectra comparing the low-resolution prism input, the high-resolution grating target, and the super-resolved output from 1 to 5.3 microns" loading="lazy">
           <figcaption>Two held-out galaxies: prism input (red dashed), grating target (purple), and super-resolved output (orange). Insets show H&beta; and the [OIII] doublet, which the prism leaves unresolved.</figcaption>
         </figure>
         <p>To test how much of that sharpening is real, I benchmarked the network against seven classical deconvolution methods on 572 held-out spectra. It appears to win on mean absolute error by 30%, but the margin comes from shrinking line amplitudes; on a scale-free metric all methods lie within 1.2% of one another. The network recovers line widths far better than any classical method, but it also places confident lines where the reference detects none, in 30% of spectra for H&beta; and 44% for [OII].</p>
         <figure class="research-figure">
-          <img src="assets/img/research/fig_mae_summary.png" alt="Bar charts of mean absolute error, uncertainty-normalized error, and RMSE for seven classical deconvolution methods and the deep-learning model" loading="lazy">
+          <img src="assets/img/research/fig_mae_summary.png" width="2205" height="712" alt="Bar charts of mean absolute error, uncertainty-normalized error, and RMSE for seven classical deconvolution methods and the deep-learning model" loading="lazy">
           <figcaption>Global error for all eight methods. The deep-learning model (orange) leads because its output sits at 0.54 of the reference amplitude; the lead disappears on a scale-free metric.</figcaption>
         </figure>
         <p>That failure mode shaped the next step: adapting the framework to slitless grism spectra from the Nancy Grace Roman Space Telescope. Trained on 36,404 simulated OpenUniverse2024 spectrum pairs, the Roman model is penalized for drawing lines the data could not have revealed. It recovers 85% of the flux of strong lines while leaving undetectable ones near zero, and its redshift head, which also reads three Roman imaging bands, reaches a 5.1% catastrophic outlier rate.</p>
         <figure class="research-figure">
-          <img src="assets/img/research/roman_spectra_examples.png" alt="Two simulated Roman grism spectra comparing the noisy grism input, the target spectrum, and the super-resolved output from 1.0 to 1.93 microns" loading="lazy">
+          <img src="assets/img/research/roman_spectra_examples.png" width="2400" height="1322" alt="Two simulated Roman grism spectra comparing the noisy grism input, the target spectrum, and the super-resolved output from 1.0 to 1.93 microns" loading="lazy">
           <figcaption>Two simulated Roman test galaxies: grism input (dashed), target (purple), and super-resolved output (orange). Insets separate H&alpha; from [NII] (top) and H&beta; from the [OIII] doublet (bottom).</figcaption>
         </figure>
         <p>
@@ -197,7 +197,7 @@
         <h3>Parameter estimation of the global 21cm signal</h3>
         <p>The global 21cm signal traces neutral hydrogen between the cosmic dark ages and the first stars, so departures from the standard model could reveal new physics such as exotic dark matter or cosmic strings. My thesis built a pipeline combining Markov chain Monte Carlo with the Levenberg&ndash;Marquardt algorithm to fit ARES simulations of the signal, and tested it on data from the EDGES experiment.</p>
         <figure class="research-figure">
-          <img src="assets/img/research/fit_curve_edges.png" alt="Best-fit ARES model against half-amplitude EDGES data, with a zoomed panel of individual MCMC sample curves" loading="lazy">
+          <img src="assets/img/research/fit_curve_edges.png" width="1933" height="740" alt="Best-fit ARES model against half-amplitude EDGES data, with a zoomed panel of individual MCMC sample curves" loading="lazy">
           <figcaption>Left: EDGES data at half amplitude with the best-fit ARES model, which cannot reproduce the observed trough with standard astrophysics. Right: an extreme zoom on individual MCMC sample curves.</figcaption>
         </figure>
         <p>

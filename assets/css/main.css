@@ -26,6 +26,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5rem; /* keep section headings clear of the fixed nav */
   background: var(--ink);
 }
 
@@ -519,6 +520,7 @@ ul { list-style: none; }
 }
 .research-figure img {
   width: 100%;
+  height: auto; /* with width/height attrs, reserves space before lazy load */
   display: block;
 }
 .research-figure figcaption {
