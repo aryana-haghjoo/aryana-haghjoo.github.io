@@ -1,0 +1,29 @@
+# Fails if index.html's CV links don't carry the current PDF's version stamp,
+# i.e. a commit skipped the .githooks/pre-commit hook. Fix: run
+#   git config core.hooksPath .githooks && .githooks/pre-commit && git commit -am "Restamp CV links"
+name: CV link check
+on:
+  push:
+    paths: ["files/CV_Aryana_Haghjoo.pdf", "index.html", "CV/kyvernitis-resume.*"]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: CV links match the committed PDF
+        run: |
+          v=$(git rev-parse --short=10 HEAD:files/CV_Aryana_Haghjoo.pdf)
+          total=$(grep -o 'files/CV_Aryana_Haghjoo\.pdf[^"#]*' index.html | wc -l)
+          good=$(grep -o "files/CV_Aryana_Haghjoo\.pdf?v=$v" index.html | wc -l)
+          echo "PDF version $v: $good of $total links up to date"
+          [ "$total" -gt 0 ] && [ "$good" -eq "$total" ]
+      - name: PDF is not older than its source
+        run: |
+          pdf=$(git log -1 --format=%ct -- files/CV_Aryana_Haghjoo.pdf)
+          src=$(git log -1 --format=%ct -- CV/kyvernitis-resume.tex CV/kyvernitis-resume.cls)
+          if [ "$src" -gt "$pdf" ]; then
+            echo "::error::CV source was committed after the PDF. Run 'make -C CV' and commit files/CV_Aryana_Haghjoo.pdf."
+            exit 1
+          fi
