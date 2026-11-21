@@ -9,8 +9,10 @@ OUT     := ../files/CV_Aryana_Haghjoo.pdf
 
 all: $(OUT)
 
-$(OUT): $(SRC).tex kyvernitis-resume.cls
+$(OUT): $(SRC).tex kyvernitis-resume.cls fonts/CormorantGaramond-Bold.ttf
 	latexmk -xelatex -interaction=nonstopmode -halt-on-error -outdir=$(BUILD) $(SRC).tex
+	@pdffonts $(BUILD)/$(SRC).pdf | grep -q CormorantGaramond || \
+		{ echo "ERROR: name font (Cormorant Garamond) missing from the PDF; see CV/fonts/" >&2; exit 1; }
 	cp $(BUILD)/$(SRC).pdf $(OUT)
 
 clean:

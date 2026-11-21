@@ -91,13 +91,18 @@
 \newcommand{\bolditem}[1]{\item{\textbf{#1}}}
 \newcommand{\entry}[2]{#1 & #2 \tabularnewline}
 
-% Font used for the name in the header: Cormorant Garamond Bold (ships with
-% TeX Live / Overleaf). Falls back to the body font in bold if unavailable.
+% Font used for the name in the header: Cormorant Garamond Bold. A copy lives
+% in fonts/ so every machine builds the same PDF; Overleaf/TeX Live also ship it.
+% The bold body-font fallback is a last resort: `make` refuses a PDF without it.
+\IfFileExists{fonts/CormorantGaramond-Bold.ttf}{%
+    \newfontfamily\namefont{CormorantGaramond-Bold.ttf}[Path=fonts/, Ligatures=TeX]%
+}{%
 \IfFontExistsTF{CormorantGaramond-Bold.ttf}{%
     \newfontfamily\namefont{CormorantGaramond-Bold.ttf}[Ligatures=TeX]%
 }{%
+    \ClassWarningNoLine{kyvernitis-resume}{Cormorant Garamond not found; using the body font for the name}%
     \newcommand{\namefont}{\bfseries}%
-}
+}}
 
 % Define the resume header
 % #1-#4: contact lines shown on the right (e.g. \email{}, \website{}, \linkedin{}, \github{})
